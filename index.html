@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accessing Secure Terminal | Darakah Operations</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;500&display=swap" rel="stylesheet">
+    <title>Welcome to Darakah Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #58a6ff;
-            --bg-dark: #05070a;
-            --glass: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --primary: #00d2ff;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
         }
 
         body, html {
@@ -19,184 +18,193 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-dark);
-            color: white;
+            font-family: 'Poppins', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* High-Quality Animated Background */
-        .bg-animate {
+        /* High-Quality Video Background */
+        #bg-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+            object-fit: cover;
+            filter: brightness(0.6); /* تحسين وضوح النصوص */
+        }
+
+        /* Overlay to enhance contrast */
+        .overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(125deg, #05070a, #0d1117, #161b22, #05070a);
-            background-size: 400% 400%;
-            animation: meshGradient 15s ease infinite;
+            background: rgba(0, 0, 0, 0.2);
             z-index: -1;
         }
 
-        @keyframes meshGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
         /* Glassmorphism Container */
-        .terminal-box {
+        .main-card {
             background: var(--glass);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 50px;
+            border-radius: 30px;
+            padding: 60px 40px;
             text-align: center;
-            max-width: 500px;
-            width: 90%;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            animation: fadeIn 1.5s ease-out;
+            max-width: 450px;
+            width: 85%;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            animation: slideUp 1s ease-out;
         }
 
         h1 {
             font-family: 'Orbitron', sans-serif;
-            letter-spacing: 4px;
-            font-size: 1.5rem;
-            color: var(--primary);
+            letter-spacing: 2px;
+            font-size: 1.8rem;
+            color: white;
             margin-bottom: 10px;
-            text-transform: uppercase;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
         p {
             font-weight: 300;
-            color: #8b949e;
+            color: #f0f0f0;
             margin-bottom: 40px;
+            font-size: 1rem;
         }
 
         /* Professional Transparent Countdown */
-        .countdown-container {
+        .timer-wrap {
             position: relative;
-            width: 150px;
-            height: 150px;
+            width: 120px;
+            height: 120px;
             margin: 0 auto 40px;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        .countdown-svg {
+        .timer-svg {
             transform: rotate(-90deg);
-            width: 150px;
-            height: 150px;
+            width: 120px;
+            height: 120px;
         }
 
-        .countdown-svg circle {
+        .timer-svg circle {
             fill: none;
-            stroke-width: 6;
+            stroke-width: 5;
             stroke-linecap: round;
         }
 
         .circle-bg {
-            stroke: rgba(255, 255, 255, 0.05);
+            stroke: rgba(255, 255, 255, 0.1);
         }
 
         .circle-progress {
             stroke: var(--primary);
-            stroke-dasharray: 440;
+            stroke-dasharray: 360;
             stroke-dashoffset: 0;
             transition: stroke-dashoffset 1s linear;
-            filter: drop-shadow(0 0 8px var(--primary));
+            filter: drop-shadow(0 0 5px var(--primary));
         }
 
-        .timer-text {
+        .timer-val {
             position: absolute;
             font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 700;
+            color: white;
         }
 
-        /* Futuristic Button */
-        .btn-enter {
-            background: transparent;
-            border: 1px solid var(--primary);
-            color: var(--primary);
-            padding: 12px 35px;
+        /* Premium Button */
+        .btn-action {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid white;
+            color: white;
+            padding: 15px 40px;
             font-family: 'Orbitron', sans-serif;
             border-radius: 50px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             text-transform: uppercase;
             letter-spacing: 2px;
-            font-size: 0.9rem;
-            opacity: 0.6;
+            font-size: 0.85rem;
+            opacity: 0.5;
             pointer-events: none;
         }
 
-        .btn-enter.active {
-            background: var(--primary);
-            color: var(--bg-dark);
+        .btn-action.active {
+            background: white;
+            color: #004e92;
             opacity: 1;
             pointer-events: auto;
-            box-shadow: 0 0 20px rgba(88, 166, 255, 0.4);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
-        .btn-enter:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 30px rgba(88, 166, 255, 0.6);
+        .btn-action:hover {
+            transform: scale(1.05);
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
-    <div class="bg-animate"></div>
+    <!-- Nature/Water Video Background -->
+    <video autoplay muted loop id="bg-video">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-blue-ocean-water-4009-large.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+    <div class="overlay"></div>
 
-    <div class="terminal-box">
+    <div class="main-card">
         <h1>Welcome Friend</h1>
-        <p>Synchronizing secure data stream...</p>
+        <p>Connecting to secure resources...</p>
 
-        <div class="countdown-container">
-            <svg class="countdown-svg">
-                <circle class="circle-bg" cx="75" cy="75" r="70"></circle>
-                <circle class="circle-progress" id="progress" cx="75" cy="75" r="70"></circle>
+        <div class="timer-wrap">
+            <svg class="timer-svg">
+                <circle class="circle-bg" cx="60" cy="60" r="57"></circle>
+                <circle class="circle-progress" id="bar" cx="60" cy="60" r="57"></circle>
             </svg>
-            <div class="timer-text" id="timer">5</div>
+            <div class="timer-val" id="num">5</div>
         </div>
 
-        <button class="btn-enter" id="enterBtn" onclick="redirectNow()">Enter Now</button>
+        <button class="btn-action" id="btn" onclick="go()">Access Now</button>
     </div>
 
     <script>
-        let timeLeft = 5;
-        const timerEl = document.getElementById('timer');
-        const progressEl = document.getElementById('progress');
-        const btnEl = document.getElementById('enterBtn');
-        const totalDash = 440;
+        let count = 5;
+        const num = document.getElementById('num');
+        const bar = document.getElementById('bar');
+        const btn = document.getElementById('btn');
+        const total = 360;
 
-        const countdown = setInterval(() => {
-            timeLeft--;
-            timerEl.textContent = timeLeft;
+        const timer = setInterval(() => {
+            count--;
+            num.textContent = count;
             
-            // Update progress circle
-            const offset = totalDash - (timeLeft / 5) * totalDash;
-            progressEl.style.strokeDashoffset = offset;
+            const offset = total - (count / 5) * total;
+            bar.style.strokeDashoffset = offset;
 
-            if (timeLeft <= 0) {
-                clearInterval(countdown);
-                timerEl.textContent = "0";
-                btnEl.classList.add('active');
-                // Auto redirect after countdown
-                setTimeout(redirectNow, 800);
+            if (count <= 0) {
+                clearInterval(timer);
+                num.textContent = "0";
+                btn.classList.add('active');
+                setTimeout(go, 800);
             }
         }, 1000);
 
-        function redirectNow() {
+        function go() {
             window.location.replace("https://giorginausa.blogspot.com/2026/07/adsterra-adsterra.html?m=1");
         }
     </script>
